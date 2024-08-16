@@ -2,7 +2,7 @@ import time
 import requests
 from bs4 import BeautifulSoup as bs
 import pandas as pd
-from google_sheet import clean_up, update_cell, update_google_sheet
+
 from nse_data import updatenseIndex,maketStatus,marketAdvacneDecline
 from back_end_chart_ink import chartinkLogicBankend
 
@@ -26,8 +26,6 @@ def trasferDataToGoogleSheet():
         try:
             title = "Compounding Funda"
             sub_title = "powered by SnT Solution - 8080105062"
-            update_cell(cell='A3',data=title,sheetname='DashBoard')
-            update_cell(cell='A200',data=sub_title,sheetname='DashBoard')
             # Condtion 1
             conditionName = "SUPER HERO ADVANCE" # change name Here
             conditionNameLocation = "A4"

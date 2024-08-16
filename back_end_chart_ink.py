@@ -4,7 +4,7 @@ import requests
 from bs4 import BeautifulSoup as bs
 import pandas as pd
 import logging
-from google_sheet import clean_up, update_google_sheet, update_cell
+
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -40,8 +40,7 @@ def chartinkLogicBankend(condition, row_to_start, row_to_clean, sheetname, condi
                     df_empty = pd.DataFrame(columns=['nsecode', 'per_chg', 'close', 'volume'])
                     df_empty.to_csv(f'{directory}/{conditionName}.csv', index=False)
                     
-                    # Clean up the sheet if needed
-                    # clean_up(range_to_clear=row_to_clean, sheetname=sheetname)
+              
                     return
                 
                 # Sort the stock list and save it to a CSV file
@@ -49,9 +48,7 @@ def chartinkLogicBankend(condition, row_to_start, row_to_clean, sheetname, condi
                 stock_list_sorted1 = stock_list_sorted[['nsecode', 'per_chg', 'close', 'volume']]
                 stock_list_sorted1.to_csv(f'{directory}/{conditionName}.csv', index=False)
                 
-                # Update Google Sheets
-                # update_google_sheet(row_to_start, stock_list_sorted1, range_to_clear=row_to_clean, sheetname=sheetname)
-                # update_cell(conditionNameLocation, conditionName, sheetname="DashBoard")
+         
                 logging.info(f"Data successfully processed and saved for condition: {conditionName}")
             else:
                 logging.info(f"No content returned from server for condition: {conditionName}")
