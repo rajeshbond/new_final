@@ -1,6 +1,7 @@
 from fastapi import FastAPI,BackgroundTasks,status,HTTPException
 from chartink import trasferDataToGoogleSheet
 import schemas
+from typing import List
 from contextlib import asynccontextmanager
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
