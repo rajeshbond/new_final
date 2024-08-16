@@ -44,7 +44,7 @@ async def start(background_tasks: BackgroundTasks):
     return{"Message" : 'code run started'}
 
 
-@app.post('/api/fetchScreener', status_code=status.HTTP_200_OK, response_model=list[schemas.ScreenerDataFetch])
+@app.post('/api/fetchScreener', status_code=status.HTTP_200_OK, response_model=List[schemas.ScreenerDataFetch])
 def screenerDataFetch(data: schemas.ScreenerData):
     directory = 'super'
     if not os.path.exists(directory):
