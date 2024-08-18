@@ -27,7 +27,8 @@ def trasferDataToGoogleSheet():
             title = "Compounding Funda"
             sub_title = "powered by SnT Solution - 8080105062"
             # Condtion 1
-            conditionName = "SUPER HERO ADVANCE" # change name Here
+            # conditionName = "SUPER HERO ADVANCE" # change name Here
+            conditionName = "ADVANCE"
             conditionNameLocation = "A4"
             # Put condition here
             # CONDITION1 = {'scan_clause': '( {cash} ( ( {cash} ( latest close >= latest ema( latest close , 20 ) and 1 day ago close < latest ema( latest close , 20 ) and latest volume > 1 day ago volume and latest rsi( 14 ) > 50 ) ) ) ) '}
@@ -41,7 +42,7 @@ def trasferDataToGoogleSheet():
         # Condtion 2
         try:
             # Condtion 2
-            conditionName = "SUPER HERO BULLISH CROSSOVER" # change name Here
+            conditionName = "BULLISH CROSSOVER" # change name Here
            
             CONDITION2 = {"scan_clause": "( {cash} ( ( {cash} ( latest macd line( 13 , 8 , 5 ) > latest macd signal( 13 , 8 , 5 ) and 1 day ago  macd line( 13 , 8 , 5 ) <= 1 day ago  macd signal( 13 , 8 , 5 ) and 1 day ago macd line( 13 , 8 , 5 ) < 1 day ago macd signal( 13 , 8 , 5 ) and latest rsi( 14 ) >= 40 and latest volume >= latest sma( latest volume , 20 ) and market cap >= 500 ) ) ) ) "}
             row_to_start ='F3'
@@ -53,8 +54,9 @@ def trasferDataToGoogleSheet():
         # Condtion 3        
         try:
             # condition 3
-            conditionName = "SUPER HERO REVERSAL"
-            CONDITION3 = {'scan_clause': '( {cash} ( ( {57960} ( latest close >= latest sma( latest close , 200 ) and latest rsi( 2 ) <= 10 and latest close <= latest lower bollinger band( 20 , 2 ) and latest williams %r( 14 ) <= -90 ) ) ) ) '}
+            conditionName = "REVERSAL STOCK"
+            CONDITION3={"scan_clause": "( {cash} ( ( {cash} ( weekly rsi( 14 ) >= 60 and monthly rsi( 14 ) >= 60 and latest rsi( 14 ) >= 40 and latest rsi( 14 ) < 60 and latest rsi( 14 ) > 1 day ago rsi( 14 ) and 1 day ago rsi( 14 ) < 2 days ago rsi( 14 ) and 2 days ago rsi( 14 ) < 3 days ago rsi( 14 ) and latest volume >= 1 day ago volume and market cap >= 500 ) ) ) )"}
+            # CONDITION3 = {'scan_clause': '( {cash} ( ( {57960} ( latest close >= latest sma( latest close , 200 ) and latest rsi( 2 ) <= 10 and latest close <= latest lower bollinger band( 20 , 2 ) and latest williams %r( 14 ) <= -90 ) ) ) ) '}
             row_to_start ='k3'
             row_to_clean = "k3:N"
             conditionNameLocation = "I4"
@@ -64,8 +66,9 @@ def trasferDataToGoogleSheet():
         # Condtion 4    
         try:
             # condition 4
-            conditionName = "SUPER HERO BOTTOM SUPPORT"
-            CONDITION4 = {"scan_clause": "( {cash} ( ( {57960} ( ( {57960} ( latest close > latest sma( latest close , 200 ) and latest close >= latest sma( latest vwap , 200 ) and 1 day ago close < latest sma( latest close , 200 ) and 2 days ago close < latest sma( latest close , 200 ) and 3 days ago close < latest sma( latest close , 200 ) and 4 days ago close < latest sma( latest close , 200 ) and latest volume >= 200000 and latest close >= 20 and latest obv >= latest sma( latest obv , 21 ) ) ) or( {57960} ( latest close < latest sma( latest close , 200 ) and 1 day ago close > latest sma( latest close , 200 ) and 2 days ago close > latest sma( latest close , 200 ) and 3 days ago close > latest sma( latest close , 200 ) and 4 days ago close > latest sma( latest close , 200 ) and latest volume >= 200000 and latest close >= 20 and latest obv <= latest sma( latest obv , 21 ) ) ) ) ) ) )"}
+            conditionName = "ACTIVE BY VOLUME"
+            CONDITION4 = {"scan_clause": "( {cash} ( ( {cash} ( latest volume > 1 day ago max( 255 , latest volume ) ) ) ) )"}
+            # CONDITION4 = {"scan_clause": "( {cash} ( ( {57960} ( ( {57960} ( latest close > latest sma( latest close , 200 ) and latest close >= latest sma( latest vwap , 200 ) and 1 day ago close < latest sma( latest close , 200 ) and 2 days ago close < latest sma( latest close , 200 ) and 3 days ago close < latest sma( latest close , 200 ) and 4 days ago close < latest sma( latest close , 200 ) and latest volume >= 200000 and latest close >= 20 and latest obv >= latest sma( latest obv , 21 ) ) ) or( {57960} ( latest close < latest sma( latest close , 200 ) and 1 day ago close > latest sma( latest close , 200 ) and 2 days ago close > latest sma( latest close , 200 ) and 3 days ago close > latest sma( latest close , 200 ) and 4 days ago close > latest sma( latest close , 200 ) and latest volume >= 200000 and latest close >= 20 and latest obv <= latest sma( latest obv , 21 ) ) ) ) ) ) )"}
             row_to_start ='P3'
             row_to_clean = "P3:S"
             conditionNameLocation = "M4"
@@ -75,8 +78,9 @@ def trasferDataToGoogleSheet():
         # Condtion 5    - Stopped by User
         try:
             # condition 5
-            conditionName = "SUPER HERO PULL BACK"
-            CONDITION5 = {"scan_clause": "( {57960} ( monthly rsi( 14 ) >= 60 and weekly rsi( 14 ) >= 60 and latest rsi( 14 ) >= 40 and latest rsi( 14 ) <= 45 ) )"}
+            conditionName = "RANGE BREAKOUT"
+            CONDITION5 = {"scan_clause": "( {cash} ( ( {cash} ( ( {cash} ( abs( latest high - latest low ) > abs( 1 day ago high - 1 day ago low ) and abs( latest high - latest low ) > abs( 2 days ago high - 2 days ago low ) and abs( latest high - latest low ) > abs( 3 days ago high - 3 days ago low ) and abs( latest high - latest low ) > abs( 4 days ago high - 4 days ago low ) and latest close > latest open and latest close > weekly open and latest close > monthly open and latest low > 1 day ago close - abs( 1 day ago close / 222 ) and latest adx( 14 ) >= 15 and latest adx di positive( 14 ) > latest adx di negative( 14 ) and 1 day ago  adx di positive( 14 ) <= 1 day ago  adx di negative( 14 ) ) ) ) ) ) )"}
+            # CONDITION5 = {"scan_clause": "( {57960} ( monthly rsi( 14 ) >= 60 and weekly rsi( 14 ) >= 60 and latest rsi( 14 ) >= 40 and latest rsi( 14 ) <= 45 ) )"}
             row_to_start ='U3'
             row_to_clean = "U3:X"
             conditionNameLocation = "Q4"

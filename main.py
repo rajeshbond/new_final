@@ -46,6 +46,7 @@ async def start(background_tasks: BackgroundTasks):
 
 @app.post('/api/fetchScreener', status_code=status.HTTP_200_OK, response_model=List[schemas.ScreenerDataFetch])
 def screenerDataFetch(data: schemas.ScreenerData):
+    print(data.conditionName)
     directory = 'super'
     if not os.path.exists(directory):
         return {"Message": "Data not found"}
