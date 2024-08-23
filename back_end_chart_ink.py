@@ -30,7 +30,7 @@ def chartinkLogicBankend(condition, row_to_start, row_to_clean, sheetname, condi
             
             # Post the condition to the server
             response = s.post(url=URL, headers=header, data=condition, timeout=10)
-            
+            print(response.json())
             if response.content:
                 data = response.json()
                 stock_list = pd.DataFrame(data['data'])
@@ -47,6 +47,8 @@ def chartinkLogicBankend(condition, row_to_start, row_to_clean, sheetname, condi
                 stock_list_sorted = stock_list.sort_values(by='per_chg', ascending=False)
                 stock_list_sorted1 = stock_list_sorted[['nsecode', 'per_chg', 'close', 'volume']]
                 stock_list_sorted1.to_csv(f'{directory}/{conditionName}.csv', index=False)
+                print(f"----------------{conditionName}--------------")
+                print(stock_list_sorted1)
                 
          
                 logging.info(f"Data successfully processed and saved for condition: {conditionName}")
